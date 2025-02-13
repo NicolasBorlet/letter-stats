@@ -1,0 +1,56 @@
+{
+    "name": "@nicolas-borlet/letter-stats",
+    "version": "0.0.2",
+    "exports": "./main.ts",
+    "tasks": {
+        "dev": "deno run --watch main.ts",
+        "test": "deno test",
+        "check": "deno check main.ts",
+        "coverage": "deno test --coverage"
+    },
+    "imports": {
+        "@std/assert": "jsr:@std/assert@^1.0.0"
+    },
+    "fmt": {
+        "include": [
+            "*.ts"
+        ],
+        "lineWidth": 80,
+        "indentWidth": 2,
+        "semiColons": true,
+        "singleQuote": false
+    },
+    "lint": {
+        "include": [
+            "*.ts"
+        ],
+        "rules": {
+            "tags": [
+                "recommended"
+            ]
+        }
+    },
+    "publish": {
+        "include": [
+            "main.ts",
+            "main_test.ts",
+            "README.md",
+            "LICENSE"
+        ]
+    },
+    "description": "A TypeScript library for analyzing text statistics, providing information about word count and other metrics",
+    "keywords": [
+        "text",
+        "analysis",
+        "statistics",
+        "words",
+        "letters",
+        "frequency"
+    ],
+    "license": "MIT",
+    "runtime": {
+        "deno": true,
+        "node": true,
+        "workerd": true
+    }
+}

@@ -6,13 +6,27 @@ on:
       - '*'
 
 jobs:
-  publish:
+  test-and-publish:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
       - uses: denoland/setup-deno@v1
+
+      - name: Run tests
+        run: deno test
+
+      - name: Check types
+        run: deno check main.ts
+
+      - name: Run linter
+        run: deno lint
+
+      - name: Run formatter check
+        run: deno fmt --check
+
       - name: Publish package
+        if: success()
         run: deno publish
         env:
           JSR_TOKEN: ${{ secrets.JSR_TOKEN }}

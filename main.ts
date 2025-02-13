@@ -37,8 +37,11 @@ export interface LetterStats {
  * ```
  */
 export function analyzeText(text: string): LetterStats {
-  const words = text.match(/\b\w+\b/g) || [];
-  const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
+  // Utilisons trim() pour enlever les espaces superflus au début et à la fin
+  const cleanText = text.trim();
+
+  const words = cleanText.match(/\b\w+\b/g) || [];
+  const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [];
 
   const wordFrequency: Record<string, number> = {};
   const letterFrequency: Record<string, number> = {};
@@ -51,7 +54,7 @@ export function analyzeText(text: string): LetterStats {
   });
 
   // Analyse des lettres et symboles
-  [...text].forEach((char) => {
+  [...cleanText].forEach((char) => {
     if (/[a-zA-Z]/.test(char)) {
       const normalizedChar = char.toLowerCase();
       letterFrequency[normalizedChar] = (letterFrequency[normalizedChar] || 0) + 1;
@@ -63,7 +66,7 @@ export function analyzeText(text: string): LetterStats {
   return {
     wordCount: words.length,
     sentenceCount: sentences.length,
-    characterCount: text.length,
+    characterCount: cleanText.length,
     wordFrequency,
     letterFrequency,
     symbolFrequency,

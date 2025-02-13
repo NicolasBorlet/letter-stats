@@ -23,9 +23,3 @@ jobs:
 
       - name: Run formatter check
         run: deno fmt --check
-
-      - name: Publish package
-        if: success()
-        run: deno publish
-        env:
-          JSR_TOKEN: ${{ secrets.JSR_TOKEN }}
